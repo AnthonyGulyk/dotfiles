@@ -1,0 +1,113 @@
+{
+    "layer": "top",
+    "reload_style_on_change": true,
+    "position": "top",
+    "height": 40,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "clock#clock",
+        "clock#date"
+    ],
+    "modules-right": [
+        "custom/rss",
+        "bluetooth",
+        "battery",
+        "network",
+        "wireplumber"
+    ],
+    "hyprland/workspaces": {
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "6": "󰭹",
+            "7": ""
+        }
+    },
+    "clock#clock": {
+        "format": " {:%I:%M %p}",
+        "format-alt": " {:%I:%M:%S %p}",
+        "tooltip": false,
+        "interval": 1
+    },
+    "clock#date": {
+        "format": " {:%m/%d %a}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "interval": 60,
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "tz_up",
+            "on-scroll-down": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+    "custom/rss": {
+        "exec": "./.config/waybar/scripts/rss",
+        "format": "󰑬 {}",
+        "interval": 1800,
+        "tooltip": false
+    },
+    "bluetooth": {
+        "format": " {num_connections}",
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%",
+        "on-click": "toggleheadphones"
+    },
+    "battery": {
+        "interval": 1,
+        "states": {
+            "good": 99,
+            "warning": 30,
+            "critical": 20
+        },
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "format": "<span color='#8ec07c' > {icon}</span>{capacity}%",
+        "format-critical": "<span color='#cc241d' > {icon}</span>{capacity}%",
+        "format-warning": "<span color='#d8a657' > {icon}</span>{capacity}%",
+        "format-full": "<span color='#8ec07c' > {icon}</span>{capacity}%",
+        "format-charging": "<span color='#8ec07c' >  </span>{capacity}%",
+        "format-charging-warning": "<span color='#d8a657' >  </span>{capacity}%",
+        "format-charging-critical": "<span color='#cc241d' >  </span>{capacity}%",
+        "format-plugged": "<span color='#8ec07c' >  </span>{capacity}%",
+        "tooltip": false
+    },
+    "network": {
+        "interface": "wlp2s0",
+        "format-wifi": "󰤨",
+        "format-disconnected": "󰤭",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "on-click": "nmtui"
+    },
+    "wireplumber": {
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "format-icons": [
+            "",
+            "",
+            ""
+        ]
+    }
+}
