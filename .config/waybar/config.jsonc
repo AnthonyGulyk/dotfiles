@@ -11,6 +11,7 @@
         "clock#date"
     ],
     "modules-right": [
+        "custom/recording",
         "custom/rss",
         "bluetooth",
         "battery",
@@ -55,6 +56,11 @@
             "on-scroll-up": "shift_up",
             "on-scroll-down": "shift_down"
         }
+    },
+    "custom/recording": {
+        "exec": "exec ./.config/waybar/scripts/record-screend",
+        "exec-on-event": false,
+        "on-click": "pkill -INT -P \"$(pgrep -xo record-screen)\" wf-recorder"
     },
     "custom/rss": {
         "exec": "./.config/waybar/scripts/rss",
