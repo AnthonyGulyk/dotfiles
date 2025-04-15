@@ -1,0 +1,10 @@
+set recolor
+set recolor-lightcolor \#f4edca
+set recolor-darkcolor \#704214
+
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 5
+set selection-clipboard clipboard
+
+map r reload

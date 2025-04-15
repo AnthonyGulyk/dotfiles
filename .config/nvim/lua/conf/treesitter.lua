@@ -1,0 +1,63 @@
+vim.filetype.add({
+    pattern = { [".*/hyprland%.conf"] = "hyprlang" },
+})
+
+require('nvim-treesitter.configs').setup {
+    autotag = {
+        enable = true,
+        filetypes = {
+            'html',
+            'javascript',
+            'javascriptreact',
+            'jsx',
+            'markdown',
+            'tsx',
+            'typescript',
+            'typescriptreact',
+            'xml'
+        },
+    },
+    ensure_installed = {
+        'asm',
+        'bash',
+        'c',
+        'cmake',
+        'cpp',
+        'css',
+        'diff',
+        'disassembly',
+        'dockerfile',
+        'git_config',
+        'git_rebase',
+        'gitattributes',
+        'gitcommit',
+        'gitignore',
+        'go',
+        'gomod',
+        'gosum',
+        'gpg',
+        'haskell',
+        'html',
+        'hyprlang',
+        'javascript',
+        'json',
+        'jsonc',
+        'llvm',
+        'lua',
+        'make',
+        'markdown',
+        'meson',
+        'objdump',
+        'python',
+        'rust',
+        'toml',
+        'tsv',
+        'tsx',
+        'typescript',
+        'xml',
+        'yaml',
+    },
+    highlight = {
+        enable = true,
+    }
+}
