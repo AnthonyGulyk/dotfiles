@@ -1,5 +1,3 @@
-local lspconfig = require('lspconfig')
-
 local function set_keymaps(bufnr)
     local function keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local opts = { noremap = true, silent = true }
@@ -26,6 +24,16 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+-- Configure all servers with the same on_attach and capabilities
+vim.lsp.config('*', {
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+-- Configure lua_ls with additional settings
+vim.lsp.config('lua_ls', vim.tbl_deep_extend('force', require('conf.lsp.settings.lua_ls'), {}))
+
+-- Enable all the servers
 for _, server in ipairs({
     'clangd',
     'cssls',
@@ -36,14 +44,5 @@ for _, server in ipairs({
     'pyright',
     'ts_ls',
 }) do
-    local opts = {
-        on_attach = on_attach,
-        capabilities = capabilities,
-    }
-
-    if server == 'lua_ls' then
-        opts = vim.tbl_deep_extend('force', require('conf.lsp.settings.lua_ls'), opts)
-    end
-
-    lspconfig[server].setup(opts)
+    vim.lsp.enable(server)
 end
