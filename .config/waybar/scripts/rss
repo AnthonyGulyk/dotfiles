@@ -1,5 +1,6 @@
 #!/bin/sh
 
 newsboat -x reload
+sleep 1
 UNREAD=$(newsboat -x print-unread | awk '{print $1}')
 echo "$UNREAD"

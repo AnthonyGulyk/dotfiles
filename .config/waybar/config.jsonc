@@ -1,5 +1,6 @@
 {
     "layer": "top",
+    "output": ["DP-5","DP-8","eDP-1"],
     "reload_style_on_change": true,
     "position": "top",
     "height": 40,
@@ -22,8 +23,16 @@
         "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
-            "6": "󰭹",
-            "7": ""
+            "1": "🐧",
+            // "6": "󰭹",
+            // "7": "",
+            "7": "❄",
+            "8": "❄",
+            "9": "❄",
+            "10": "❄",
+            "11": "❄",
+            "12": "❄",
+            "13": "❄"
         }
     },
     "clock#clock": {
@@ -72,10 +81,10 @@
         "format": " {num_connections}",
         "tooltip-format-connected": "{device_enumerate}",
         "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%",
-        "on-click": "toggleheadphones"
+        "on-click": "blueman-manager"
     },
     "battery": {
-        "interval": 1,
+        "interval": 60,
         "states": {
             "good": 99,
             "warning": 30,
@@ -88,25 +97,27 @@
             "",
             ""
         ],
-        "format": "<span color='#8ec07c' > {icon}</span>{capacity}%",
-        "format-critical": "<span color='#cc241d' > {icon}</span>{capacity}%",
-        "format-warning": "<span color='#d8a657' > {icon}</span>{capacity}%",
-        "format-full": "<span color='#8ec07c' > {icon}</span>{capacity}%",
-        "format-charging": "<span color='#8ec07c' >  </span>{capacity}%",
-        "format-charging-warning": "<span color='#d8a657' >  </span>{capacity}%",
-        "format-charging-critical": "<span color='#cc241d' >  </span>{capacity}%",
-        "format-plugged": "<span color='#8ec07c' >  </span>{capacity}%",
-        "tooltip": false
+        "format": "<span color='#8ec07c' > {icon}</span>",
+        "format-critical": "<span color='#cc241d' > {icon}</span>",
+        "format-warning": "<span color='#d8a657' > {icon}</span>",
+        "format-full": "<span color='#8ec07c' > {icon}</span>",
+        "format-charging": "<span color='#8ec07c' > </span>",
+        "format-charging-warning": "<span color='#d8a657' > </span>",
+        "format-charging-critical": "<span color='#cc241d' > </span>",
+        "format-plugged": "<span color='#8ec07c' > </span>",
+        "tooltip": true,
+        "tooltip-format": "Capacity: {capacity}%\nHealth: {health}\nTime To: {timeTo}"
     },
     "network": {
         "interface": "wlp2s0",
         "format-wifi": "󰤨",
         "format-disconnected": "󰤭",
         "tooltip-format-wifi": "{essid} ({signalStrength}%)",
-        "on-click": "nmtui"
+        "on-click": "kitty --hold nmtui"
     },
     "wireplumber": {
-        "format": "{icon} {volume}%",
+        // "format": "{icon} {volume}%",
+        "format": "{volume}%",
         "format-muted": "",
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-click-right": "pavucontrol",
