@@ -1,0 +1,11 @@
+bambustudio-bin
+brave-bin
+dict-wn
+emote
+foo2zjs-nightly
+minecraft-launcher
+neofetch
+open
+parsec-bin
+pix
+yay
