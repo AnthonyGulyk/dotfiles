@@ -46,7 +46,9 @@ hl.workspace_rule({ workspace = "9", monitor = "DP-6" })
 --------------------------------------------------------------------------------
 hl.on("hyprland.start", function()
     hl.exec_cmd("restartwaybar")
-    hl.exec_cmd("autoshutdown")
+    -- hl.exec_cmd("autoshutdown")
+    hl.exec_cmd("awww-daemon")
+    hl.exec_cmd("awww restore")
 end)
 
 --------------------------------------------------------------------------------

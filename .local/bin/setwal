@@ -1,5 +1,23 @@
 #!/bin/sh
 
-IMG=$(find "$XDG_DATA_HOME"/wallpapers | grep "$1\.")
-killall swaybg
-swaybg -i "$IMG" -m fill &
+WALLPAPER_DIR="$HOME/docs/Pictures/wallpaper"
+STATE_FILE="$HOME/.cache/current_wallpaper"
+
+OPTIONS=$(find "$WALLPAPER_DIR" -maxdepth 1 -type f -exec basename {} \; | sed 's/\.[^.]*$//')
+
+OPTION=$(printf "random\n%s" "$OPTIONS" | dmenu-wl)
+[ -z "$OPTION" ] && exit 0
+
+if [ "$OPTION" = "random" ]; then
+    CURRENT=$(cat "$STATE_FILE" 2>/dev/null)
+    OPTION=$(printf "%s\n" "$OPTIONS" | grep -v -x "$CURRENT" | shuf -n 1)
+fi
+
+cd "$WALLPAPER_DIR" || exit 1
+FILE=$(find . -type f -name "$OPTION*" | awk -F './' '{print $NF}')
+
+pgrep -x awww-daemon > /dev/null || awww-daemon &
+
+awww img "$WALLPAPER_DIR/$FILE" --transition-type wipe --transition-angle 30 --transition-step 90
+
+echo "$OPTION" > "$STATE_FILE"

@@ -2,6 +2,7 @@ alacritty
 arandr
 arch-wiki-docs
 atool
+awww
 base
 base-devel
 bat
