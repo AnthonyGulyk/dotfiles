@@ -1,0 +1,8 @@
+#!/bin/sh
+
+DIR="$HOME/docs/works"
+while true; do
+    openfile "$DIR" && exit
+    OPTION=$(find "$DIR" -maxdepth 1 -mindepth 1 -printf '%P\n' | sort | dmenu-wl -p "  ") || exit
+    DIR="$DIR/$OPTION"
+done

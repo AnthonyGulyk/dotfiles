@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if pgrep -x mpv; then
+    hyprctl dispatch focuswindow "class:^(mpv)$"
+else
+    pkill -x mpv
+    mpv https://www.youtube.com/live/X4VbdwhkE10?si=pGSLXFihNq2eOYev &
+fi

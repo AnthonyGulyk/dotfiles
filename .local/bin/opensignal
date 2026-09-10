@@ -1,0 +1,8 @@
+#!/bin/sh
+
+hyprctl dispatch workspace 6
+if pgrep -x "signal-desktop" > /dev/null; then
+    exit 0
+else
+    hyprctl dispatch exec "[workspace 6] signal-desktop --ozone-platform-hint=wayland &"
+fi

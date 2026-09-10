@@ -1,0 +1,4 @@
+#!/bin/sh
+for file in *.HEIC; do
+  heif-convert "$file" "${file%.HEIC}.png"
+done

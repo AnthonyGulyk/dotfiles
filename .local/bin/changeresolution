@@ -1,0 +1,20 @@
+#!/bin/sh
+
+CONFIG_FILE="$HOME/.config/hypr/hyprland.conf"
+
+OPTIONS="laptop
+external"
+
+OPTION=$(printf "$OPTIONS" | dmenu-wl)
+
+if [ "$OPTION" = "laptop" ]; then
+    sed -i 24d $CONFIG_FILE
+    sed -i '24i\monitor = eDP-1, preferred, 0x0, 1.25\' $CONFIG_FILE
+    echo "Changed to laptop display settings"
+    exit
+elif [ "$OPTION" = "external" ]; then
+    sed -i 24d $CONFIG_FILE
+    sed -i '24i\monitor = eDP-1, 1920x1080, 0x0, 1\' $CONFIG_FILE
+    echo "Changed to external monitor display settings"
+    exit
+fi

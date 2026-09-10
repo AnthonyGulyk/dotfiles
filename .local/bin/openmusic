@@ -1,0 +1,30 @@
+#!/bin/sh
+
+OPTIONS="smash
+but-why
+one-piece
+beaver
+gojo
+mario-kart
+lofi-girl
+synth-boy"
+
+OPTION=$(printf "%s\nrandom" "$OPTIONS" | dmenu-wl)
+[ -z "$OPTION" ] && exit 0
+pkill -x mpv
+
+if [ "$OPTION" = "random" ]; then
+    OPTION=$(printf "%s" "$OPTIONS" | shuf -n 1)
+fi
+
+if [ "$OPTION" = "lofi-girl" ]; then
+    hyprctl dispatch exec "[workspace 7] mpv https://youtu.be/jfKfPfyJRdk"
+    exit
+elif [ "$OPTION" = "synth-boy" ]; then
+    hyprctl dispatch exec "[workspace 7] mpv https://youtu.be/4xDzrJKXOOY"
+    exit
+fi
+
+cd ~/docs/music
+FILE=$(find . -type f -name "$OPTION*" | awk -F './' '{print $NF}')
+hyprctl dispatch exec "mpv --loop=inf ~/docs/music/$FILE"

@@ -1,0 +1,28 @@
+#!/bin/sh
+
+BAT=$(ls /sys/class/power_supply/ | grep BAT | head -n 1)
+
+CAPACITY="/sys/class/power_supply/$BAT/capacity"
+STATUS="/sys/class/power_supply/$BAT/status"
+LOCK="/tmp/battery_shutdown.lock"
+
+THRESHOLD=10
+
+[ -f "$CAPACITY" ] || exit 0
+
+BAT_LEVEL=$(cat "$CAPACITY")
+BAT_STATUS=$(cat "$STATUS")
+
+[ "$BAT_STATUS" != "Discharging" ] && exit 0
+[ -f "$LOCK" ] && exit 0
+
+if [ "$BAT_LEVEL" -le "$THRESHOLD" ]; then
+    touch "$LOCK"
+
+    notify-send "Low Battery" "Shutting down in 60 seconds (${BAT_LEVEL}%)"
+
+    sleep 60
+
+    systemctl poweroff
+fi
+

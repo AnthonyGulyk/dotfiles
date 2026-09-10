@@ -1,0 +1,9 @@
+#!/bin/sh
+
+FILE_TYPE=$(file --mime-type "$1" -b)
+case "$FILE_TYPE" in
+    inode/directory) exit 1 ;;
+    application/epub*|application/pdf) zathura "$1";;
+    audio/*) $TERMINAL -e mpv "$1";;
+    video/mp4) mpv "$1";;
+esac

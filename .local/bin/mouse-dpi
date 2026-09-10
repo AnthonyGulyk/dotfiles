@@ -1,0 +1,21 @@
+#!/bin/sh
+
+CONFIG_FILE="$HOME/.config/hypr/hyprland.conf"
+
+OPTIONS="slow
+fast"
+
+OPTION=$(printf "$OPTIONS" | dmenu-wl)
+
+if [ "$OPTION" = "slow" ]; then
+    sed -i 2d $CONFIG_FILE
+    sed -i '2i\    sensitivity = -.8\' $CONFIG_FILE
+    notify-send "SLOW - Changed to laptop display settings"
+    exit
+elif [ "$OPTION" = "fast" ]; then
+    sed -i 2d $CONFIG_FILE
+    sed -i '2i\    sensitivity = .2\' $CONFIG_FILE
+    notify-send "FAST - Changed to external monitor display settings"
+    exit
+fi
+

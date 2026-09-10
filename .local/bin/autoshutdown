@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Set your desired shutdown time (24-hour format)
+SHUTDOWN_TIME="23:59"
+# shutdown -h "$SHUTDOWN_TIME"
+# notify-send "Shutdown Alert" "System will shut down at $SHUTDOWN_TIME"
+
+# Get current time in seconds since midnight
+CURRENT_TIME=$(date +%s)
+TARGET_TIME=$(date -d "$SHUTDOWN_TIME" +%s)
+
+# If the target time is earlier than the current time, assume it's for the next day
+if [ "$TARGET_TIME" -le "$CURRENT_TIME" ]; then
+    TARGET_TIME=$((TARGET_TIME + 86400)) # Add 24 hours
+fi
+
+# Calculate sleep duration in seconds
+SLEEP_TIME=$((TARGET_TIME - CURRENT_TIME))
+
+# Convert sleep time to hours and minutes
+SLEEP_HOURS=$((SLEEP_TIME / 3600))
+SLEEP_MINUTES=$(((SLEEP_TIME % 3600) / 60))
+
+sleep ($SLEEP_TIME - 300)
+notify-send "Shutdown Alert 5 Min"
+
+sleep 240
+notify-send "Shutdown Alert 1 Min"

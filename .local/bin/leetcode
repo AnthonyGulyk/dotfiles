@@ -1,0 +1,6 @@
+#!/bin/sh
+
+$BROWSER --new-window https://leetcode.com/problemset/ &
+# $BROWSER --new-tab https://neetcode.io/roadmap &
+cd ~/docs/github/leetcode/
+exec $TERMINAL &

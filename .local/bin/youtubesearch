@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Prompt the user for input using dmenu-wl
+query=$(dmenu-wl -p "  " -l 0 -w 50 --prompt-color=ff0000ff --input-color=000000ff -C 808080ff -b ea9a97ff < /dev/null)
+
+# Ensure query is not empty
+if [ -n "$query" ]; then
+    # URL encode spaces (convert ' ' to '+')
+    encoded_query=$(echo "$query" | sed 's/ /+/g')
+
+    # Open YouTube search in Firefox
+    # exec $BROWSER --incognito "https://www.youtube.com/results?search_query=$encoded_query"
+    # exec $BROWSER "https://www.youtube.com/results?search_query=$encoded_query"
+    exec webapp "https://www.youtube.com/results?search_query=$encoded_query"
+fi
+

@@ -1,0 +1,16 @@
+#!/bin/sh
+# A script to launch a URL as a web app.
+
+# Check if a URL was provided as an argument.
+if [ -z "$1" ]; then
+  echo "Error: No URL provided."
+  echo "Usage: $0 <URL>"
+  exit 1
+fi
+
+URL=$1
+
+# Use Brave Browser's --app flag to launch the URL in an app-like window.
+# The command is run in the background (&) so it doesn't block the terminal.
+# The output is redirected to /dev/null to keep the terminal clean.
+brave --app="$URL" &> /dev/null &

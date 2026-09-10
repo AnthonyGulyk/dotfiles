@@ -1,0 +1,6 @@
+#!/bin/sh
+
+$BROWSER https://mail.google.com/mail/u/0/#inbox &
+$BROWSER https://mail.google.com/mail/u/1/#inbox &
+$BROWSER https://mail.google.com/mail/u/2/#inbox &
+$BROWSER https://mail.google.com/mail/u/3/#inbox &

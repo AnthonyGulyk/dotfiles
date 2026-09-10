@@ -1,0 +1,17 @@
+#!/bin/sh
+
+BOOKMARKS_FILE="$HOME/docs/bookmarks"
+
+# Generate the list for dmenu: If a title exists, show it; otherwise, show the URL.
+OPTIONS=$(awk '!/^#/ {print (NF>1 ? substr($0, length($1)+2) : $1)}' "$BOOKMARKS_FILE")
+
+# Let the user pick from dmenu (or any other menu tool)
+OPTION_IDX=$(echo "$OPTIONS" | dmenu-wl --index)
+[ -z "$OPTION_IDX" ] && exit 1  # Exit if no selection
+
+# Adjust for comments and find the corresponding URL
+URL=$(awk -v i="$((OPTION_IDX+1))" '!/^#/ {c++; if (c == i) print $1}' "$BOOKMARKS_FILE")
+
+# Open the selected URL
+$BROWSER --new-tab "$URL" &
+
