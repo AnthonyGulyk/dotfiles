@@ -70,7 +70,7 @@ hl.config({
             enabled = false,
         },
         blur = {
-            enabled = false,
+            enabled = true,
         },
     },
     dwindle = {
@@ -85,6 +85,17 @@ hl.config({
         enable_swallow = true,
         swallow_regex = "Alacritty",
     },
+})
+
+--------------------------------------------------------------------------------
+-- Layer Rules
+--------------------------------------------------------------------------------
+-- fuzzel's default layer-shell namespace is "launcher" unless a menu
+-- overrides it with --namespace, so this covers any fuzzel-based menu
+hl.layer_rule({
+    match = { namespace = "launcher" },
+    blur = true,
+    dim_around = true,
 })
 
 --------------------------------------------------------------------------------
@@ -125,7 +136,7 @@ hl.bind(mod .. " + W", hl.dsp.exec_cmd("$BROWSER --password-store=basic 2>/dev/n
 hl.bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd("$BROWSER --incognito --password-store=basic 2>/dev/null"))
 
 hl.bind(mod .. " + M", hl.dsp.exec_cmd("openmusic"))
-hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("openmusicdefault"))
+-- hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("openmusicdefault"))
 
 hl.bind(mod .. " + C", hl.dsp.exec_cmd("signal-desktop --ozone-platform-hint=wayland"))
 
@@ -136,6 +147,7 @@ hl.bind(mod .. " + T", hl.dsp.layout("togglesplit"))
 hl.bind(mod .. " + Q", hl.dsp.window.close())
 hl.bind(mod .. " + SPACE", hl.dsp.window.float({ action = "toggle" }))
 
+hl.bind(mod .. " + G", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mod .. " + SHIFT + R", hl.dsp.exec_cmd("restartwaybar"))
 
 hl.bind("Print", hl.dsp.exec_cmd("screenshot"))

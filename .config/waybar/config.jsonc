@@ -17,7 +17,8 @@
         "bluetooth",
         "battery",
         "network",
-        "wireplumber"
+        "wireplumber",
+        "custom/power"
     ],
     "hyprland/workspaces": {
         "all-outputs": true,
@@ -60,19 +61,17 @@
         },
         "actions": {
             "on-click-right": "mode",
-            "on-scroll-up": "tz_up",
-            "on-scroll-down": "tz_down",
             "on-scroll-up": "shift_up",
             "on-scroll-down": "shift_down"
         }
     },
     "custom/recording": {
-        "exec": "exec ./.config/waybar/scripts/record-screend",
+        "exec": "exec ~/.config/waybar/scripts/record-screend",
         "exec-on-event": false,
         "on-click": "pkill -INT -P \"$(pgrep -xo record-screen)\" wf-recorder"
     },
     "custom/rss": {
-        "exec": "./.config/waybar/scripts/rss",
+        "exec": "~/.config/waybar/scripts/rss",
         "format": "󰑬 {}",
         "interval": 1800,
         "tooltip": false
@@ -114,6 +113,11 @@
         "format-disconnected": "󰤭",
         "tooltip-format-wifi": "{essid} ({signalStrength}%)",
         "on-click": "kitty --hold nmtui"
+    },
+    "custom/power": {
+        "format": "⏻",
+        "on-click": "sh ~/.local/bin/powermenu",
+        "tooltip": false
     },
     "wireplumber": {
         // "format": "{icon} {volume}%",

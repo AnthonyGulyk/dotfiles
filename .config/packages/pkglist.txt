@@ -35,6 +35,7 @@ graphicsmagick
 grim
 hplip
 hyprland
+hyprlock
 hyprpicker
 imagemagick
 imv
